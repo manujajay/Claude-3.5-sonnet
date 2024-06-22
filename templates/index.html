@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Claude Chatbot</title>
+</head>
+<body>
+    <h1>Welcome to Claude 3.5 Chatbot</h1>
+    <form id="chat-form">
+        <input type="text" id="user-input" placeholder="Type your message here...">
+        <button type="submit">Send</button>
+    </form>
+    <div id="chat-log"></div>
+
+    <script>
+        document.getElementById('chat-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            var userInput = document.getElementById('user-input').value;
+            var chatLog = document.getElementById('chat-log');
+            var newMessage = document.createElement('p');
+            newMessage.textContent = "You: " + userInput;
+            chatLog.appendChild(newMessage);
+            document.getElementById('user-input').value = '';
+
+            // Send the user input to the backend and get the response
+            var response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput, history: chatLog.textContent })
+            });
+            var data = await response.json();
+
+            var botMessage = document.createElement('p');
+            botMessage.textContent = "Claude: " + data.response;
+            chatLog.appendChild(botMessage);
+        });
+    </script>
+</body>
+</html>
