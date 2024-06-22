@@ -6,8 +6,8 @@ This is a simple AI chatbot using the Claude 3.5 Sonnet model from Anthropic.
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/claude-chatbot.git
-    cd claude-chatbot
+    git clone https://github.com/manujajay/claude-3.5-sonnet.git
+    cd claude-3.5-sonnet
     ```
 
 2. **Install the required packages:**
